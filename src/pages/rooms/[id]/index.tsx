@@ -13,13 +13,15 @@ const RoomPage: React.FC<Props> = () => {
   ];
   return (
     <PageLayout>
-      <Row justify="center">
+      <Row justify="center" style={{ marginTop: 48, marginBottom: 48 }}>
         <Col span={16}>
           <Row gutter={36}>
             <Col span={16}>
               <Row gutter={[24, 24]}>
                 {pokerCards.map(({ id, text }) => (
-                  <PokerCard key={id}>{text}</PokerCard>
+                  <Col>
+                    <PokerCard key={id}>{text}</PokerCard>
+                  </Col>
                 ))}
               </Row>
             </Col>
