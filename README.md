@@ -1,4 +1,4 @@
-# umi project
+# Pokerface App (React Workshop)
 
 ## Getting Started
 
