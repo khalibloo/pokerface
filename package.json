@@ -1,5 +1,7 @@
 {
   "private": true,
+  "name": "pokerface",
+  "license": "MIT",
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
