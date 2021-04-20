@@ -1,5 +1,4 @@
 import CreateRoomForm from "@/components/CreateRoomForm";
-import PageLayout from "@/components/PageLayout";
 import { Button } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import { useState } from "react";
@@ -9,8 +8,8 @@ export default function IndexPage() {
   const [createRoomModalOpen, setCreateRoomModalOpen] = useState(false);
 
   return (
-    <PageLayout>
-      <h1 className={styles.title}>Page index</h1>
+    <>
+      <h1>Landing Page</h1>
       <div>
         <Modal
           visible={createRoomModalOpen}
@@ -22,6 +21,6 @@ export default function IndexPage() {
           Create Room
         </Button>
       </div>
-    </PageLayout>
+    </>
   );
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Col, Row } from "antd";
-import PageLayout from "@/components/PageLayout";
 import PokerCard from "@/components/PokerCard";
 import CardForm from "@/components/CardForm";
 
@@ -13,7 +12,7 @@ const EditRoomPage: React.FC<Props> = () => {
     { id: "tea", text: "Tea" },
   ];
   return (
-    <PageLayout>
+    <>
       <Row justify="center" style={{ marginTop: 48, marginBottom: 48 }}>
         <Col span={16}>
           <Row gutter={36}>
@@ -30,7 +29,7 @@ const EditRoomPage: React.FC<Props> = () => {
           </Row>
         </Col>
       </Row>
-    </PageLayout>
+    </>
   );
 };
 

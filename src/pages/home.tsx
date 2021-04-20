@@ -1,5 +1,4 @@
 import React from "react";
-import PageLayout from "@/components/PageLayout";
 import { Button, Col, List, Row, Typography } from "antd";
 
 export default function IndexPage() {
@@ -12,7 +11,7 @@ export default function IndexPage() {
   ];
 
   return (
-    <PageLayout>
+    <>
       <Typography.Title level={1} style={{ textAlign: "center" }}>
         Available Rooms
       </Typography.Title>
@@ -29,6 +28,6 @@ export default function IndexPage() {
           />
         </Col>
       </Row>
-    </PageLayout>
+    </>
   );
 }
