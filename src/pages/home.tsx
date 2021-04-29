@@ -4,25 +4,35 @@ import Modal from "antd/lib/modal/Modal";
 import CreateRoomForm from "@/components/CreateRoomForm";
 import { useAuth0 } from "@auth0/auth0-react";
 import { history } from "umi";
+import { useRooms } from "@/queries/useRooms";
+import axios from "@/utils/request";
 
 export default function IndexPage() {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const {
+    isAuthenticated,
+    isLoading: isAuthLoading,
+    getAccessTokenSilently,
+  } = useAuth0();
   const [createRoomModalOpen, setCreateRoomModalOpen] = useState(false);
-  const rooms = [
-    { id: 1, name: "Blah" },
-    { id: 2, name: "Meow" },
-    { id: 3, name: "Mario" },
-    { id: 4, name: "Bowser" },
-    { id: 5, name: "Peach" },
-  ];
+  const [hasToken, setHasToken] = useState(false);
+  const { data: rooms, isLoading: isRoomsLoading } = useRooms({
+    enabled: hasToken,
+  });
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
+    if (!isAuthLoading && !isAuthenticated) {
       history.push("/");
     }
-  }, [isLoading]);
+  }, [isAuthLoading]);
 
-  if (isLoading) {
+  useEffect(() => {
+    getAccessTokenSilently().then((token) => {
+      axios.defaults.headers["Authorization"] = `Bearer ${token}`;
+      setHasToken(true);
+    });
+  }, [getAccessTokenSilently]);
+
+  if (isAuthLoading) {
     return (
       <Row justify="center" style={{ marginTop: "40vh" }}>
         <Spin size="large" />
@@ -56,6 +66,7 @@ export default function IndexPage() {
           </Typography.Title>
           <List
             dataSource={rooms}
+            loading={isRoomsLoading}
             renderItem={(room) => (
               <List.Item>
                 <List.Item.Meta title={room.name} />
